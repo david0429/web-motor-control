@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Web Browser Control</h1>
+<p>Drag the slider to display the current value.</p>
+
+<div id="slidecontainer">
+  <input type="range" min="-255" max="255" value="0" id="range1">
+  <p>Value: <span id="range1_value"></span></p>
+</div>
+
+<script>
+var slider = document.getElementById("range1");
+var output = document.getElementById("range1_value");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = slider.value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "http://192.168.2.103:5000/set_speed?speed=" + slider.value, true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
+
